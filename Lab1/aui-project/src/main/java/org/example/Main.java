@@ -66,16 +66,23 @@ public class Main {
 
         System.out.println("Zadanie 3");
         Set<Character> charactersSet = professions.stream()
-                .flatMap(prof -> prof.getCharacters().stream()).collect(Collectors.toSet());
+                .flatMap(prof -> prof.getCharacters().stream())
+                .collect(Collectors.toSet());
         charactersSet.forEach(System.out::println);
         System.out.println("--------------------");
 
         System.out.println("Zadanie 4");
-        charactersSet.stream().filter(c -> c.getLevel()> 15).sorted(Comparator.comparing(Character::getName)).forEach(System.out::println);
+        charactersSet.stream()
+                    .filter(c -> c.getLevel()> 15)
+                    .sorted(Comparator.comparing(Character::getName))
+                .forEach(System.out::println);
         System.out.println("--------------------");
 
         System.out.println("Zadanie 5");
-        List<CharacterDto> characterDtos = charactersSet.stream().map(c -> new CharacterDto(c.getName(), c.getLevel(),c.getProfession().getName())).toList();
+        List<CharacterDto> characterDtos =
+                charactersSet.stream()
+                        .map(c -> new CharacterDto(c.getName(), c.getLevel(),c.getProfession().getName()))
+                        .toList();
         characterDtos.forEach(System.out::println);
 
         System.out.println("Zadanie 6");
