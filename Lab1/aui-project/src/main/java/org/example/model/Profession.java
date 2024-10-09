@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Profession implements Comparable, Serializable {
     private String name;
     private int baseArmor;
-    @Builder.Default
     private List<Character> characters = new ArrayList<>();
 
     @Override
@@ -31,6 +30,10 @@ public class Profession implements Comparable, Serializable {
 
     public void addCharacter(Character character) {
         characters.add(character);
+    }
+
+    public static Profession getByName(List<Profession> professions, String name){
+        return professions.stream().filter(p -> p.getName().equals(name)).findFirst().orElse(null);
     }
 
 }

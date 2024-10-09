@@ -4,58 +4,58 @@ import org.example.model.Profession;
 import org.example.model.Character;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Main {
     public static void main(String[] args) {
 
+        List<Profession> professions  = Stream.of(
+                Profession.builder()
+                        .name("Wojownik")
+                        .baseArmor(50)
+                        .characters(new ArrayList<>())
+                        .build(),
+                Profession.builder()
+                        .name("Mag")
+                        .baseArmor(20)
+                        .characters(new ArrayList<>())
+                        .build()
+                ).toList();
 
-        Profession profession = Profession.builder()
-                .name("Warrior")
-                .baseArmor(50)
-                .build();
+        List<Character> characters = Stream.of(
+                Character.builder()
+                        .name("Hubert")
+                        .level(20)
+                        .profession(Profession.getByName(professions, "Wojownik"))
+                        .build(),
+                Character.builder()
+                        .name("Postac 2 ")
+                        .level(50)
+                        .profession(Profession.getByName(professions, "Wojownik"))
+                        .build(),
+                Character.builder()
+                        .name("Postac 3")
+                        .level(10)
+                        .profession(Profession.getByName(professions, "Mag"))
+                        .build(),
+                Character.builder()
+                        .name("AA")
+                        .level(19)
+                        .profession(Profession.getByName(professions, "Wojownik"))
+                        .build()
+        ).toList();
 
-        Profession profession2 = Profession.builder()
-                .name("Mag")
-                .baseArmor(20)
-                .build();
 
-        Character character1 = Character.builder()
-                .name("Hubert")
-                .level(20)
-                .profession(profession)
-                .build();
+       professions.forEach(p -> p.getCharacters()
+               .addAll(characters.stream()
+                   .filter(c -> c.getProfession().getName().equals(p.getName()))
+                   .toList())
+                );
 
-        Character character2 = Character.builder()
-                .name("Postac 2 ")
-                .level(50)
-                .profession(profession)
-                .build();
-
-        Character character3 = Character.builder()
-                .name("Postac 3")
-                .level(10)
-                .profession(profession2)
-                .build();
-
-        Character character4 = Character.builder()
-                .name("AA")
-                .level(19)
-                .profession(profession2)
-                .build();
-
-        profession.addCharacter(character1);
-        profession.addCharacter(character2);
-        profession.addCharacter(character4);
-        profession2.addCharacter(character3);
-
-        List<Profession> professions = Arrays.asList(profession, profession2);
 
         System.out.println("Zadanie 2");
         professions.forEach(prof -> {
@@ -65,16 +65,17 @@ public class Main {
         System.out.println("--------------------");
 
         System.out.println("Zadanie 3");
-        Set<Character> characters = professions.stream().flatMap(prof -> prof.getCharacters().stream()).collect(Collectors.toSet());
-        characters.forEach(System.out::println);
+        Set<Character> charactersSet = professions.stream()
+                .flatMap(prof -> prof.getCharacters().stream()).collect(Collectors.toSet());
+        charactersSet.forEach(System.out::println);
         System.out.println("--------------------");
 
         System.out.println("Zadanie 4");
-        characters.stream().filter(c -> c.getLevel()> 15).sorted(Comparator.comparing(Character::getName)).forEach(System.out::println);
+        charactersSet.stream().filter(c -> c.getLevel()> 15).sorted(Comparator.comparing(Character::getName)).forEach(System.out::println);
         System.out.println("--------------------");
 
         System.out.println("Zadanie 5");
-        List<CharacterDto> characterDtos = characters.stream().map(c -> new CharacterDto(c.getName(), c.getLevel(),c.getProfession().getName())).toList();
+        List<CharacterDto> characterDtos = charactersSet.stream().map(c -> new CharacterDto(c.getName(), c.getLevel(),c.getProfession().getName())).toList();
         characterDtos.forEach(System.out::println);
 
         System.out.println("Zadanie 6");
@@ -101,7 +102,6 @@ public class Main {
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
 
-            // Method for deserialization of object
             professions_Deserialize  =  (List<Profession>)in.readObject();
 
             in.close();
@@ -122,7 +122,7 @@ public class Main {
         ForkJoinPool forkJoinPool = new ForkJoinPool(1);
 
         forkJoinPool.submit(() -> {
-            characters.parallelStream().forEach((c) -> {
+            charactersSet.parallelStream().forEach((c) -> {
                 System.out.println("Uleczanie Postaci "+c);
                 System.out.println("...");
                 try {
@@ -132,7 +132,7 @@ public class Main {
                 }
             });
         });
-        forkJoinPool.submit(() -> System.out.println("done"));
+        forkJoinPool.submit(() -> System.out.println("Done!"));
 
         forkJoinPool.close();
     }
