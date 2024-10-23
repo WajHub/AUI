@@ -92,7 +92,6 @@ public class DataInitializer implements CommandLineRunner {
         boolean isRunning = true;
 
         while(isRunning){
-            printAll();
             System.out.println("Write Command:");
             command = scanner.next();
             switch (command) {
@@ -144,6 +143,7 @@ public class DataInitializer implements CommandLineRunner {
                     System.out.println("delete_trainer - delete category");
                     System.out.println("delete_pokemon - delete element");
                     System.out.println("Exit - end program");
+                    break;
                 case "exit":
                     System.out.println("Exit");
                     isRunning = false;
