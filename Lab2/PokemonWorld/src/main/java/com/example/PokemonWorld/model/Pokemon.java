@@ -28,7 +28,7 @@ public class Pokemon implements Serializable, Comparable<Pokemon> {
     @Column(name ="level")
     private int level;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne
     @JoinColumn(name="trianer")
     private Trainer trainer;
 

@@ -133,11 +133,17 @@ public class DataInitializer implements CommandLineRunner {
                     trainerService.deleteById(idTrainerToDelete);
                     break;
                 case "delete_pokemon":
-                    // TODO: Correct (delete from trainer list)
                     System.out.print("[Deleting Pokemon...]Pokemon UUID:");
                     UUID idPokemonToDelete = UUID.fromString(scanner.next());
                     pokemonService.deleteById(idPokemonToDelete);
                     break;
+                case "help":
+                    System.out.println("show - print out all fo categories and elements");
+                    System.out.println("create_trainer - create new category");
+                    System.out.println("create_pokemon - create new element");
+                    System.out.println("delete_trainer - delete category");
+                    System.out.println("delete_pokemon - delete element");
+                    System.out.println("Exit - end program");
                 case "exit":
                     System.out.println("Exit");
                     isRunning = false;

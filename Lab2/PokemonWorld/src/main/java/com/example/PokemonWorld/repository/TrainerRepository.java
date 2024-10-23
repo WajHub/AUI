@@ -7,10 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface TrainerRepository extends JpaRepository<Trainer, UUID> {
-    Trainer findAllByName(String name);
 
     Trainer save(Trainer trainer);
-
-    boolean existsByName(String name);
 
 }

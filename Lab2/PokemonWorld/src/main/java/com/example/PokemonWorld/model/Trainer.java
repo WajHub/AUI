@@ -30,7 +30,7 @@ public class Trainer implements Serializable, Comparable<Trainer> {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Pokemon> pokemons = new ArrayList<>();
 
     @Override
