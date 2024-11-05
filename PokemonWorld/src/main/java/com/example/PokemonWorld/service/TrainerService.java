@@ -29,6 +29,8 @@ public class TrainerService {
         return trainerRepository.findById(id);
     }
 
+    public Trainer update(Trainer trainer) { return trainerRepository.save(trainer);}
+
     public void deleteById(UUID id){
         trainerRepository.deleteById(id);
     }

@@ -12,4 +12,5 @@ public interface PokemonRepository extends JpaRepository<Pokemon, UUID> {
     Pokemon save(Pokemon pokemon);
 
 
+
 }

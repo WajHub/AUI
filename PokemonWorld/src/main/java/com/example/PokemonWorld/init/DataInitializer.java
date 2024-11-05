@@ -5,15 +5,15 @@ import com.example.PokemonWorld.model.Pokemon;
 import com.example.PokemonWorld.model.Trainer;
 import com.example.PokemonWorld.service.PokemonService;
 import com.example.PokemonWorld.service.TrainerService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 @Component
-public class DataInitializer implements CommandLineRunner {
+public class DataInitializer {
 
     private PokemonService pokemonService;
     private TrainerService trainerService;
@@ -25,7 +25,7 @@ public class DataInitializer implements CommandLineRunner {
         this.trainerService = trainerService;
         this.mapper = mapper;
     }
-
+    @PostConstruct
     private void initData(){
         System.out.println("INITIALIZING DATA");
         List<Trainer> trainers = Stream.of(
@@ -75,81 +75,4 @@ public class DataInitializer implements CommandLineRunner {
 
     }
 
-    private void printAll(){
-        trainerService.findAll().forEach((trainer ->{
-            System.out.println(mapper.trainerToTrainerDto(trainer));
-        }));
-        pokemonService.findAll().forEach((pokemon -> {
-            System.out.println(mapper.pokemonToPokemonDto(pokemon));
-        }));
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        initData();
-        Scanner scanner = new Scanner(System.in);
-        String command;
-        boolean isRunning = true;
-
-        while(isRunning){
-            System.out.println("Write Command:");
-            command = scanner.next();
-            switch (command) {
-                case "show":
-                    printAll();
-                    break;
-                case "create_trainer":
-                    System.out.print("[Creating Trainer...]Name:");
-                    String nameTrainer = scanner.next();
-                    System.out.print("[Creating Trainer...]Age:");
-                    int ageTrainer = scanner.nextInt();
-                    trainerService.create(Trainer.builder()
-                                            .name(nameTrainer)
-                                            .age(ageTrainer)
-                                        .build());
-                    break;
-                case "create_pokemon":
-                    System.out.print("[Creating Pokemon...]Name:");
-                    String namePokemon = scanner.next();
-                    System.out.print("[Creating Trainer...]Level:");
-                    int levelPokemon = scanner.nextInt();
-                    System.out.print("[Creating Trainer...]Trainer UUID:");
-                    UUID idTrainer = UUID.fromString(scanner.next());
-                    Optional<Trainer> trainer = trainerService.findAllById(idTrainer);
-                    if(trainer.isEmpty()){
-                        System.out.println("Trainer doesn't exist!");
-                        break;
-                    }
-                    pokemonService.create(Pokemon.builder()
-                                            .name(namePokemon)
-                                            .level(levelPokemon)
-                                            .trainer(trainer.get())
-                                        .build());
-                    break;
-                case "delete_trainer":
-                    System.out.print("[Deleting Trainer...]Trainer UUID:");
-                    UUID idTrainerToDelete = UUID.fromString(scanner.next());
-                    trainerService.deleteById(idTrainerToDelete);
-                    break;
-                case "delete_pokemon":
-                    System.out.print("[Deleting Pokemon...]Pokemon UUID:");
-                    UUID idPokemonToDelete = UUID.fromString(scanner.next());
-                    pokemonService.deleteById(idPokemonToDelete);
-                    break;
-                case "help":
-                    System.out.println("show - print out all fo categories and elements");
-                    System.out.println("create_trainer - create new category");
-                    System.out.println("create_pokemon - create new element");
-                    System.out.println("delete_trainer - delete category");
-                    System.out.println("delete_pokemon - delete element");
-                    System.out.println("Exit - end program");
-                    break;
-                case "exit":
-                    System.out.println("Exit");
-                    isRunning = false;
-                    break;
-
-            }
-        }
-    }
 }
