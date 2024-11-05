@@ -1,7 +1,6 @@
-package com.example.PokemonWorld.dto;
+package com.example.PokemonWorld.dto.response;
 
 import lombok.*;
-import org.example.dto.PokemonDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,9 +10,9 @@ import java.util.UUID;
 @ToString
 @Builder
 @AllArgsConstructor
-public class TrainerDto {
+public class TrainerDtoResponse {
     private UUID id;
     private String name;
     private int age;
-    private List<PokemonDto> pokemonDtoList;
+    private List<PokemonDtoResponse> pokemonDtoList;
 }

@@ -1,0 +1,66 @@
+// ------------------------------ POKEMONS CRUD -----------------------------------------
+### GET all pokemons
+
+GET http://localhost:8080/api/pokemons
+
+### GET one pokemon by id
+
+GET http://localhost:8080/api/pokemon/59168623-900a-4d40-bdc6-d5675a395e49
+
+### PUT new pokemon
+
+PUT http://localhost:8080/api/pokemon/245b3ff3-2ce3-4887-98ff-9f3b35269440
+Content-Type: application/json
+
+{
+  "name": "NOWY POKEMON",
+  "level": 120
+}
+
+### UPDATE leve in pokemon by id
+
+PATCH http://localhost:8080/api/pokemon/4810f048-7e5f-4d00-aa3c-55e53f414785
+Content-Type: application/json
+
+{
+  "level": 68
+}
+
+### DELETE one pokemon by id
+
+DELETE http://localhost:8080/api/pokemon/4fcb1c92-6717-494e-b6fb-089d4e6215df
+
+
+// ------------------------------ TRAINER CRUD -----------------------------------------
+### GET all trainers
+
+GET http://localhost:8080/api/trainers
+
+### GET one trainer by id
+
+GET http://localhost:8080/api/trainer/d52d77a2-d8bc-48f0-a4bd-ad9b3d83969b
+
+### PUT new trainer
+
+PUT http://localhost:8080/api/trainer
+Content-Type: application/json
+
+{
+  "name": "new_Hubert_trainer",
+  "age": 12
+}
+
+### UPDATE name trainer
+
+PATCH http://localhost:8080/api/trainer/f56d3e60-6080-479f-b026-6eba101d5ef2
+Content-Type: application/json
+
+{
+  "name": "Kaczynski"
+}
+
+### DELETE one trainer by id
+
+DELETE http://localhost:8080/api/trainer/7f8af307-7b55-48b7-a860-b9527e057664
+
+

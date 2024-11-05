@@ -26,6 +26,10 @@ public class PokemonService {
         return pokemonRepository.findAll();
     }
 
+    public Optional<Pokemon> findById(UUID id) { return pokemonRepository.findById(id);}
+
+    public void update(Pokemon pokemon) { pokemonRepository.save(pokemon);}
+
     public void deleteById(UUID id) {
         pokemonRepository.deleteById(id);
     }
