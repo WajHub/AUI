@@ -3,7 +3,7 @@ package com.TrainerService.init;
 
 import com.TrainerService.mapper.Mapper;
 import com.TrainerService.model.Trainer;
-import com.TrainerService.service.TrainerService;
+import com.TrainerService.repository.TrainerRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,12 +14,12 @@ import java.util.stream.Stream;
 @Component
 public class DataInitializer {
 
-    private TrainerService trainerService;
+    private TrainerRepository trainerRepository;
     private Mapper mapper;
 
     @Autowired
-    public DataInitializer(TrainerService trainerService, Mapper mapper) {
-        this.trainerService = trainerService;
+    public DataInitializer(TrainerRepository trainerRepository, Mapper mapper) {
+        this.trainerRepository = trainerRepository;
         this.mapper = mapper;
     }
     @PostConstruct
@@ -38,7 +38,8 @@ public class DataInitializer {
                         .build()
         ).toList();
 
-        trainers.forEach((trainer) -> trainerService.create(trainer));
+        trainers.forEach((trainer) -> trainerRepository.save(trainer));
+
 
     }
 

@@ -13,7 +13,4 @@ public class PokemonServiceApplication {
 		SpringApplication.run(PokemonServiceApplication.class, args);
 	}
 
-
-
-
 }

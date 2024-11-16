@@ -21,6 +21,6 @@ public class EventRepository {
     }
 
     public void delete(UUID trainerId) {
-        restTemplate.delete("api/trainer/{trainerId}", trainerId);
+        restTemplate.delete("/api/trainer/{trainerId}", trainerId);
     }
 }

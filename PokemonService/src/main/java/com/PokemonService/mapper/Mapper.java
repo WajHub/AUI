@@ -7,6 +7,7 @@ import com.PokemonService.model.Trainer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Component
 public class Mapper {
@@ -22,11 +23,14 @@ public class Mapper {
 
 
 
-    public Pokemon pokemonRequestToPokemon(PutPokemonDtoRequest pokemonDtoRequest, Trainer trainer) {
+    public Pokemon pokemonRequestToPokemon(UUID pokemonId, PutPokemonDtoRequest pokemonDtoRequest) {
         return Pokemon.builder()
+                .id(pokemonId)
                 .name(pokemonDtoRequest.getName())
                 .level(pokemonDtoRequest.getLevel())
-                .trainer(trainer)
+                .trainer(Trainer.builder()
+                        .id(pokemonDtoRequest.getTrainer())
+                        .build())
                 .build();
     }
 }

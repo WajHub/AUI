@@ -19,11 +19,16 @@ import java.util.UUID;
 public class Trainer implements Serializable {
 
     @Id
-    @GeneratedValue
     @Column(name = "id")
     private UUID id;
 
     @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Pokemon> pokemons = new ArrayList<>();
 
+    public static Trainer getById(List<Trainer> trainers, String uuid) {
+        return trainers.stream()
+                .filter((trainer -> trainer.getId().toString().equals(uuid.toString())))
+                .findFirst()
+                .orElse(null);
+    }
 }

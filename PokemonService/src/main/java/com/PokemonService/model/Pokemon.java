@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Pokemon implements Serializable, Comparable<Pokemon> {
 
     @Id
-    @GeneratedValue
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "name")
@@ -28,7 +28,7 @@ public class Pokemon implements Serializable, Comparable<Pokemon> {
     private int level;
 
     @ManyToOne
-    @JoinColumn(name="trianer")
+    @JoinColumn(name="trainer")
     private Trainer trainer;
 
     @Override

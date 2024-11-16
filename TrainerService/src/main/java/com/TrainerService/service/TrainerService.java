@@ -23,7 +23,7 @@ public class TrainerService {
     }
 
     public Trainer create(Trainer trainer){
-//        eventRepository.create(trainer.getId());
+        eventRepository.create(trainer.getId());
         return trainerRepository.save(trainer);
     }
     public List<Trainer> findAll(){
@@ -39,7 +39,7 @@ public class TrainerService {
     }
 
     public void deleteById(UUID id){
-//        eventRepository.delete(id);
+        eventRepository.delete(id);
         trainerRepository.deleteById(id);
     }
 }

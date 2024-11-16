@@ -46,13 +46,13 @@ public class PokemonController {
         );
     }
 
-    @PutMapping("api/pokemon/{trainerId}")
+    @PutMapping("api/pokemon/{pokemonId}")
     public void createPokemon(
             @RequestBody PutPokemonDtoRequest pokemonDtoRequest,
-            @PathVariable UUID trainerId){
+            @PathVariable UUID pokemonId){
         if(!pokemonDtoRequest.isValid()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        trainerService.findAllById(trainerId)
-                .map((trainer) -> pokemonService.create(mapper.pokemonRequestToPokemon(pokemonDtoRequest, trainer)))
+        trainerService.findAllById(pokemonDtoRequest.getTrainer())
+                .map((trainer) -> pokemonService.create(mapper.pokemonRequestToPokemon(pokemonId, pokemonDtoRequest)))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
