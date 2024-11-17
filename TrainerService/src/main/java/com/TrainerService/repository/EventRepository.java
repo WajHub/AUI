@@ -17,10 +17,10 @@ public class EventRepository {
     }
 
     public void create(UUID id){
-        restTemplate.put("/api/trainer/{id}",null , id);
+        restTemplate.put("/api/trainers/{id}",null , id);
     }
 
     public void delete(UUID trainerId) {
-        restTemplate.delete("/api/trainer/{trainerId}", trainerId);
+        restTemplate.delete("/api/trainers/{trainerId}", trainerId);
     }
 }

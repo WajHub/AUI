@@ -5,11 +5,11 @@ GET http://localhost:8081/api/pokemons
 
 ### GET one pokemon by id
 
-GET http://localhost:8081/api/pokemon/59168623-900a-4d40-bdc6-d5675a395e49
+GET http://localhost:8081/api/pokemons/59168623-900a-4d40-bdc6-d5675a395e49
 
 ### PUT new pokemon
 
-PUT http://localhost:8081/api/pokemon/245b3ff3-2ce3-4887-98ff-9f3b35269440
+PUT http://localhost:8081/api/pokemons/245b3ff3-2ce3-4887-98ff-9f3b35269440
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ### UPDATE leve in pokemon by id
 
-PATCH http://localhost:8081/api/pokemon/4810f048-7e5f-4d00-aa3c-55e53f414785
+PATCH http://localhost:8081/api/pokemons/4810f048-7e5f-4d00-aa3c-55e53f414785
 Content-Type: application/json
 
 {
@@ -29,4 +29,4 @@ Content-Type: application/json
 
 ### DELETE one pokemon by id
 
-DELETE http://localhost:8081/api/pokemon/4fcb1c92-6717-494e-b6fb-089d4e6215df
+DELETE http://localhost:8081/api/pokemons/4fcb1c92-6717-494e-b6fb-089d4e6215df

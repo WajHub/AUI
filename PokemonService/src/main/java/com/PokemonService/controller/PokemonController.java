@@ -38,7 +38,7 @@ public class PokemonController {
         );
     }
 
-    @GetMapping("api/pokemon/{pokemonId}")
+    @GetMapping("api/pokemons/{pokemonId}")
     public ResponseEntity<PokemonDtoResponse> getPokemon(@PathVariable UUID pokemonId){
         return ResponseEntity.ok(
                 mapper.pokemonToPokemonDtoResponse(pokemonService.findById(pokemonId)
@@ -46,7 +46,7 @@ public class PokemonController {
         );
     }
 
-    @PutMapping("api/pokemon/{pokemonId}")
+    @PutMapping("api/pokemons/{pokemonId}")
     public void createPokemon(
             @RequestBody PutPokemonDtoRequest pokemonDtoRequest,
             @PathVariable UUID pokemonId){
@@ -56,7 +56,7 @@ public class PokemonController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PatchMapping("api/pokemon/{pokemonId}")
+    @PatchMapping("api/pokemons/{pokemonId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void putPokemonLevel(
         @RequestBody UpdatePokemonLevelRequest pokemonLevelRequest,
@@ -74,7 +74,7 @@ public class PokemonController {
                 );
     }
 
-    @DeleteMapping("api/pokemon/{pokemonId}")
+    @DeleteMapping("api/pokemons/{pokemonId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePokemon(@PathVariable UUID pokemonId){
         pokemonService.findById(pokemonId)

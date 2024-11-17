@@ -5,21 +5,23 @@ GET http://localhost:8080/api/pokemons
 
 ### GET one pokemon by id
 
-GET http://localhost:8080/api/pokemon/59168623-900a-4d40-bdc6-d5675a395e49
+GET http://localhost:8080/api/pokemons/5aad8e0f-4d81-406f-b024-6f7d311e3a82
 
 ### PUT new pokemon
 
-PUT http://localhost:8080/api/pokemon/245b3ff3-2ce3-4887-98ff-9f3b35269440
+PUT http://localhost:8080/api/pokemons/245b3ff3-2ce3-4887-98ff-9f3b35269440
 Content-Type: application/json
 
 {
   "name": "NOWY POKEMON",
-  "level": 120
+  "level": 120,
+  "trainer": "71b687a3-0569-40c3-a999-46f19c68980c"
 }
+
 
 ### UPDATE leve in pokemon by id
 
-PATCH http://localhost:8080/api/pokemon/4810f048-7e5f-4d00-aa3c-55e53f414785
+PATCH http://localhost:8080/api/pokemons/245b3ff3-2ce3-4887-98ff-9f3b35269440
 Content-Type: application/json
 
 {
@@ -28,7 +30,7 @@ Content-Type: application/json
 
 ### DELETE one pokemon by id
 
-DELETE http://localhost:8080/api/pokemon/4fcb1c92-6717-494e-b6fb-089d4e6215df
+DELETE http://localhost:8080/api/pokemons/4fcb1c92-6717-494e-b6fb-089d4e6215df
 
 
 // ------------------------------ TRAINER CRUD -----------------------------------------
@@ -38,11 +40,11 @@ GET http://localhost:8080/api/trainers
 
 ### GET one trainer by id
 
-GET http://localhost:8080/api/trainer/d52d77a2-d8bc-48f0-a4bd-ad9b3d83969b
+GET http://localhost:8080/api/trainers/3b25be7c-a2ba-4240-8723-969fb130fa22
 
 ### PUT new trainer
 
-PUT http://localhost:8080/api/trainer
+PUT http://localhost:8080/api/trainers/71b687a3-0569-40c3-a999-46f19c68980c
 Content-Type: application/json
 
 {
@@ -52,7 +54,7 @@ Content-Type: application/json
 
 ### UPDATE name trainer
 
-PATCH http://localhost:8080/api/trainer/f56d3e60-6080-479f-b026-6eba101d5ef2
+PATCH http://localhost:8080/api/trainers/71b687a3-0569-40c3-a999-46f19c68980c
 Content-Type: application/json
 
 {
@@ -61,6 +63,6 @@ Content-Type: application/json
 
 ### DELETE one trainer by id
 
-DELETE http://localhost:8080/api/trainer/7f8af307-7b55-48b7-a860-b9527e057664
+DELETE http://localhost:8080/api/trainers/71b687a3-0569-40c3-a999-46f19c68980c
 
 

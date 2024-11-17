@@ -5,11 +5,11 @@ GET http://localhost:8082/api/trainers
 
 ### GET one trainer by id
 
-GET http://localhost:8082/api/trainer/3b25be7c-a2ba-4240-8723-969fb130fa22
+GET http://localhost:8082/api/trainers/3b25be7c-a2ba-4240-8723-969fb130fa22
 
 ### PUT new trainer
 
-PUT http://localhost:8082/api/trainer/71b687a3-0569-40c3-a999-46f19c68980c
+PUT http://localhost:8082/api/trainers/71b687a3-0569-40c3-a999-46f19c68980c
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ### UPDATE name trainer
 
-PATCH http://localhost:8082/api/trainer/71b687a3-0569-40c3-a999-46f19c68980c
+PATCH http://localhost:8082/api/trainers/71b687a3-0569-40c3-a999-46f19c68980c
 Content-Type: application/json
 
 {
@@ -28,6 +28,6 @@ Content-Type: application/json
 
 ### DELETE one trainer by id
 
-DELETE http://localhost:8082/api/trainer/71b687a3-0569-40c3-a999-46f19c68980c
+DELETE http://localhost:8082/api/trainers/71b687a3-0569-40c3-a999-46f19c68980c
 
 

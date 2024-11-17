@@ -36,7 +36,7 @@ public class TrainerController {
         );
     }
 
-    @GetMapping("api/trainer/{trainerId}")
+    @GetMapping("api/trainers/{trainerId}")
     public ResponseEntity<TrainerDtoResponse> getTrainer(@PathVariable UUID trainerId){
         return ResponseEntity.ok(
                 mapper.trainerToTrainerDtoResponse(trainerService.findAllById(trainerId)
@@ -44,13 +44,13 @@ public class TrainerController {
         );
     }
 
-    @PutMapping("api/trainer/{id}")
+    @PutMapping("api/trainers/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTrainer(@PathVariable UUID id, @RequestBody PutTrainerDtoRequest trainerDtoRequest){
         trainerService.create(mapper.trainerDtoRequestToTrainer(id,trainerDtoRequest));
     }
 
-    @PatchMapping("api/trainer/{trainerId}")
+    @PatchMapping("api/trainers/{trainerId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void updateTrainerName(
             @RequestBody UpdateTrainerNameRequest trainerNameRequest,
@@ -66,7 +66,7 @@ public class TrainerController {
                 );
     }
 
-    @DeleteMapping("api/trainer/{trainerId}")
+    @DeleteMapping("api/trainers/{trainerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTrainer(@PathVariable UUID trainerId){
         trainerService.findAllById(trainerId)

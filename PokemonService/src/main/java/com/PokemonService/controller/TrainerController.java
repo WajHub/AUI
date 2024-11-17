@@ -25,14 +25,14 @@ public class TrainerController {
         this.mapper = mapper;
     }
 
-    @PutMapping("api/trainer/{id}")
+    @PutMapping("api/trainers/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTrainer(@PathVariable UUID id){
         trainerService.create(Trainer.builder().id(id).build());
     }
 
 
-    @DeleteMapping("api/trainer/{trainerId}")
+    @DeleteMapping("api/trainers/{trainerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTrainer(@PathVariable UUID trainerId){
         trainerService.findAllById(trainerId)
