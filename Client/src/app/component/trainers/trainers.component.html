@@ -1,1 +1,12 @@
-<p>trainers works!</p>
+<div class="container d-flex justify-content-center pt-2">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <b>Trainers</b>
+        </div>
+        <ul class="list-group list-group-flush">
+            @for (trainer of trainers; track trainer.id) {
+            <li class="list-group-item"> {{trainer.name}}</li>
+            }
+        </ul>
+    </div>
+</div>

@@ -17,6 +17,6 @@ export const routes: Routes = [
     {
         path: "trainers",
         component: TrainersComponent,
-        title: "trainers"
+        title: "Trainers"
     },
 ];
