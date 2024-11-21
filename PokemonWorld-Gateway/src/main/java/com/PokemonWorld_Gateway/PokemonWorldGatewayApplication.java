@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
+import java.util.Collections;
 
 
 @SpringBootApplication
@@ -24,13 +29,6 @@ public class PokemonWorldGatewayApplication {
 	) {
 		return builder
 				.routes()
-				.route("pokemons", route -> route
-						.path(
-								"/api/pokemons",
-								"/api/pokemons/{uuid}"
-						)
-						.uri(pokemonUrl)
-				)
 				.route("trainers", route -> route
 						.path(
 								"/api/trainers",
@@ -38,8 +36,32 @@ public class PokemonWorldGatewayApplication {
 						)
 						.uri(trainerUrl)
 				)
+				.route("pokemons", route -> route
+						.path(
+								"/api/pokemons",
+								"/api/pokemons/{uuid}",
+								"/api/trainers/{uuid}/pokemons"
+						)
+						.uri(pokemonUrl)
+				)
 				.build();
 	}
+
+	@Bean
+	public CorsWebFilter corsWebFilter() {
+
+		final CorsConfiguration corsConfig = new CorsConfiguration();
+		corsConfig.setAllowedOrigins(Collections.singletonList("*"));
+		corsConfig.setMaxAge(3600L);
+		corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT"));
+		corsConfig.addAllowedHeader("*");
+
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfig);
+
+		return new CorsWebFilter(source);
+	}
+
 
 
 }

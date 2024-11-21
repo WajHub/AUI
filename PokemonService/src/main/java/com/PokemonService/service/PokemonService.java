@@ -1,6 +1,7 @@
 package com.PokemonService.service;
 
 import com.PokemonService.model.Pokemon;
+import com.PokemonService.model.Trainer;
 import com.PokemonService.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class PokemonService {
     public List<Pokemon> findAll(){
         return pokemonRepository.findAll();
     }
+
+    public List<Pokemon> findAllByTrainer(Trainer trainer) {return pokemonRepository.findAllByTrainer(trainer);}
 
     public Optional<Pokemon> findById(UUID id) { return pokemonRepository.findById(id);}
 

@@ -7,6 +7,11 @@ GET http://localhost:8081/api/pokemons
 
 GET http://localhost:8081/api/pokemons/59168623-900a-4d40-bdc6-d5675a395e49
 
+### GET all pokemons by Trainer
+
+GET http://localhost:8081/api/trainers/3b25be7c-a2ba-4240-8723-969fb130fa22/pokemons
+
+
 ### PUT new pokemon
 
 PUT http://localhost:8081/api/pokemons/245b3ff3-2ce3-4887-98ff-9f3b35269440

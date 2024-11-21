@@ -5,7 +5,7 @@
         </div>
         <ul class="list-group list-group-flush">
             @for (pokemon of pokemons; track pokemon.id) {
-            <li class="list-group-item"> {{pokemon.name}}</li>
+            <li class="btn list-group-item" routerLink="/pokemons/{{pokemon.id}}"> {{pokemon.name}} </li>
             }
         </ul>
     </div>

@@ -1,0 +1,34 @@
+
+<div class="container d-flex justify-content-center pt-2">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <b>Trainer</b>
+    </div>
+    <div *ngIf="trainer === undefined; else notLoading" class="d-flex justify-content-center align-items-center p-2">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+    <ng-template #notLoading>
+      <div *ngIf="trainer; else notFound">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Name:</b> {{trainer.name}}</li>
+          <li class="list-group-item"><b>Age: </b>  {{trainer.age}}</li>
+          <ul>
+            <b>Pokemons:</b>
+            @for(pokemon of trainer.pokemons; track pokemon.id){
+              <li style="cursor: pointer;" class="cursor-pointer list-group-item-action" routerLink="/pokemons/{{pokemon.id}}">{{pokemon.name}}</li>
+            }
+          </ul>
+        </ul>
+      </div>
+
+      <ng-template #notFound>
+        <div class="alert alert-danger" role="alert">
+          This Trainer doesn't exist.
+        </div>
+      </ng-template>
+    </ng-template>
+
+  </div>
+</div>

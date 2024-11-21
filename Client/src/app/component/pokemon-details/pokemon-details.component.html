@@ -1,0 +1,29 @@
+
+<div class="container d-flex justify-content-center pt-2">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <b>Pokemon</b>
+    </div>
+    <div *ngIf="pokemonDetails === undefined; else notLoading" class="d-flex justify-content-center align-items-center p-2">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+    <ng-template #notLoading>
+      <div *ngIf="pokemonDetails; else notFound">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Name</b> {{pokemonDetails.name}}</li>
+          <li class="list-group-item"><b>Level: </b>  {{pokemonDetails.level}}</li>
+          <li class="list-group-item"> <b>TrainerId:</b> {{pokemonDetails.trainerId}}</li>
+        </ul>
+      </div>
+
+      <ng-template #notFound>
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+      </ng-template>
+    </ng-template>
+
+  </div>
+</div>

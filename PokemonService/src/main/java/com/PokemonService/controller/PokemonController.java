@@ -46,6 +46,18 @@ public class PokemonController {
         );
     }
 
+    @GetMapping("api/trainers/{trainerId}/pokemons")
+    public ResponseEntity<List<PokemonDtoResponse>> getPokemonsByTrainerId(@PathVariable UUID trainerId){
+        return trainerService.findAllById(trainerId)
+                .map((trainer) ->
+                        ResponseEntity.ok(pokemonService.findAllByTrainer(trainer).stream()
+                            .map((pokemon -> mapper.pokemonToPokemonDtoResponse(pokemon))
+                            )
+                            .toList())
+                )
+                .orElseThrow(() -> new ResponseStatusException((HttpStatus.NOT_FOUND)));
+    }
+
     @PutMapping("api/pokemons/{pokemonId}")
     public void createPokemon(
             @RequestBody PutPokemonDtoRequest pokemonDtoRequest,

@@ -7,6 +7,10 @@ GET http://localhost:8080/api/pokemons
 
 GET http://localhost:8080/api/pokemons/5aad8e0f-4d81-406f-b024-6f7d311e3a82
 
+### GET all pokemons by Trainer
+
+GET http://localhost:8080/api/trainers/3b25be7c-a2ba-4240-8723-969fb130fa22/pokemons
+
 ### PUT new pokemon
 
 PUT http://localhost:8080/api/pokemons/245b3ff3-2ce3-4887-98ff-9f3b35269440
@@ -19,7 +23,7 @@ Content-Type: application/json
 }
 
 
-### UPDATE leve in pokemon by id
+### UPDATE level in pokemon by id
 
 PATCH http://localhost:8080/api/pokemons/245b3ff3-2ce3-4887-98ff-9f3b35269440
 Content-Type: application/json
