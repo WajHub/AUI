@@ -5,6 +5,7 @@ import {RouterLink} from '@angular/router';
 import {TrainerFormComponent} from '../trainer-form/trainer-form.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {TrainerFormEditComponent} from '../trainer-form-edit/trainer-form-edit.component';
 
 @Component({
   selector: 'app-trainers',
@@ -19,7 +20,8 @@ export class TrainersComponent {
   trainers: Trainer [] = [];
 
   constructor(private service: TrainerService,
-              public dialog: MatDialog){}
+              public dialog: MatDialog,
+              public dialogEdit: MatDialog){}
 
   ngOnInit(){
     this.findAllTrainers();
@@ -39,8 +41,29 @@ export class TrainersComponent {
       console.log('Dialog closed, result:', result);
       setTimeout(() => {
         this.findAllTrainers();
-      }, 500);
+      }, 300);
     });
   }
 
+  openDialogEdit(id: string){
+    const dialogRef = this.dialogEdit.open(TrainerFormEditComponent,{
+      hasBackdrop: true
+    });
+    dialogRef.componentInstance.trainerId = id;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed, result:', result);
+      setTimeout(() => {
+        this.findAllTrainers();
+      }, 300);
+    });
+  }
+
+  deleteTrainer(id: string):void {
+    this.service.deleteTrainer(id).subscribe(result =>{
+      console.log('Dialog closed, result:', result);
+      setTimeout(() => {
+        this.findAllTrainers();
+      }, 300);
+    });
+  }
 }

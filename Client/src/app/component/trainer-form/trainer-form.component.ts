@@ -28,7 +28,6 @@ export class TrainerFormComponent {
   }
 
   onSubmit(): void{
-    // Argument Trainer
     if (this.trainerForm.valid) {
       this.serviceTrainer.createTrainer(this.trainerForm.value).subscribe({
         next: response => console.log('Trainer created response:', response),
@@ -43,5 +42,4 @@ export class TrainerFormComponent {
   }
 
 
-  protected readonly name = name;
 }

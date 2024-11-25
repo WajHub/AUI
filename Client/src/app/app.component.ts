@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavComponent } from "./component/nav/nav.component";
-import { PokemonService } from './service/pokemon/pokemon.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { provideHttpClient } from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({

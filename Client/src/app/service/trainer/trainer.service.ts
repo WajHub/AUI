@@ -24,11 +24,22 @@ export class TrainerService {
     );
   }
   createTrainer(trainer: Trainer):Observable<Trainer> {
-    console.log(trainer)
     return this.http.put<Trainer>(this.url, trainer).pipe(
       tap(response => console.log('Trainer created successfully:', response)),
       catchError(err =>{
         return throwError(() =>err)
       }));
+  }
+  updateTrainer(trainerId:string, name:string) {
+    return this.http.patch<Trainer>(`${this.url}/${trainerId}`, {name: name}).pipe(
+      tap(response => console.log(response)),
+      catchError(err => {
+        return throwError(() =>err)
+      })
+    );
+  }
+
+  deleteTrainer(id: string):Observable<any> {
+    return this.http.delete<any>(`${this.url}/${id}`);
   }
 }
