@@ -4,11 +4,12 @@ import { NavComponent } from "./component/nav/nav.component";
 import { PokemonService } from './service/pokemon/pokemon.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, NavComponent],
+  imports: [RouterModule, NavComponent, MatDialogModule],
   providers: [HttpClient],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

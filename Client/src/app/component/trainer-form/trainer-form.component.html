@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Create new Trainer</h1>
+<div mat-dialog-content>
+  <form [formGroup]="trainerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label  for="fname">Trainer name:</label>
+      <input formControlName="name" class="form-control" type="text" id="fname" name="fname" required>
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label><br>
+      <input formControlName="age" class="form-control" type="number" id="age" name="age" min="1" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
+import {catchError, Observable, tap, throwError} from 'rxjs';
 import { Trainer } from '../../model/trainer';
 import {TrainerDetails} from '../../model/trainer-details';
 
@@ -22,5 +22,13 @@ export class TrainerService {
         return throwError(() =>err)
       })
     );
+  }
+  createTrainer(trainer: Trainer):Observable<Trainer> {
+    console.log(trainer)
+    return this.http.put<Trainer>(this.url, trainer).pipe(
+      tap(response => console.log('Trainer created successfully:', response)),
+      catchError(err =>{
+        return throwError(() =>err)
+      }));
   }
 }
