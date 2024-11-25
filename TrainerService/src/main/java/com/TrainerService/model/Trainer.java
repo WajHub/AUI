@@ -10,7 +10,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@ToString(exclude = "pokemons")
 @Builder
 @Entity
 @Table(name = "trainers")
@@ -19,8 +18,10 @@ import java.util.UUID;
 public class Trainer implements Serializable, Comparable<Trainer> {
 
     @Id
+    @ToString.Exclude
+    @Builder.Default
     @Column(name = "id")
-    private UUID id;
+    private UUID id = UUID.randomUUID();
 
     @Column(name = "name", unique = true)
     private String name;

@@ -10,6 +10,10 @@ import lombok.*;
 public class UpdateTrainerNameRequest {
     String name;
 
+    public String getName(){
+        return this.name;
+    }
+
     public boolean isValid(){
         return !name.isEmpty();
     }

@@ -19,8 +19,9 @@ import java.util.UUID;
 public class Trainer implements Serializable {
 
     @Id
+    @Builder.Default
     @Column(name = "id")
-    private UUID id;
+    private UUID id = UUID.randomUUID();
 
     @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Pokemon> pokemons = new ArrayList<>();

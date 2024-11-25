@@ -58,6 +58,14 @@ public class PokemonController {
                 .orElseThrow(() -> new ResponseStatusException((HttpStatus.NOT_FOUND)));
     }
 
+    @PutMapping("api/pokemons")
+    public void createPokemon(@RequestBody PutPokemonDtoRequest pokemonDtoRequest){
+        if(!pokemonDtoRequest.isValid()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        trainerService.findAllById(pokemonDtoRequest.getTrainer())
+                .map((trainer) -> pokemonService.create(mapper.pokemonRequestToPokemon(pokemonDtoRequest)))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     @PutMapping("api/pokemons/{pokemonId}")
     public void createPokemon(
             @RequestBody PutPokemonDtoRequest pokemonDtoRequest,

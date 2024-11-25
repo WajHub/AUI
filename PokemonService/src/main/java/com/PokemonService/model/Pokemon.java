@@ -18,8 +18,9 @@ import java.util.UUID;
 public class Pokemon implements Serializable, Comparable<Pokemon> {
 
     @Id
+    @Builder.Default
     @Column(name = "id")
-    private UUID id;
+    private UUID id = UUID.randomUUID();
 
     @Column(name = "name")
     private String name;

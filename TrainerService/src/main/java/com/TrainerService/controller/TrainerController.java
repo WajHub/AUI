@@ -44,10 +44,17 @@ public class TrainerController {
         );
     }
 
+
     @PutMapping("api/trainers/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTrainer(@PathVariable UUID id, @RequestBody PutTrainerDtoRequest trainerDtoRequest){
         trainerService.create(mapper.trainerDtoRequestToTrainer(id,trainerDtoRequest));
+    }
+
+    @PutMapping("api/trainers")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTrainer(@RequestBody PutTrainerDtoRequest trainerDtoRequest){
+        trainerService.create(mapper.trainerDtoRequestToTrainer(trainerDtoRequest));
     }
 
     @PatchMapping("api/trainers/{trainerId}")

@@ -26,4 +26,10 @@ public class Mapper {
                 .build();
     }
 
+    public Trainer trainerDtoRequestToTrainer(PutTrainerDtoRequest trainerDtoRequest) {
+        return Trainer.builder()
+                .name(trainerDtoRequest.getName())
+                .age(trainerDtoRequest.getAge())
+                .build();
+    }
 }

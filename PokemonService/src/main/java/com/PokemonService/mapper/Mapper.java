@@ -33,4 +33,14 @@ public class Mapper {
                         .build())
                 .build();
     }
+
+    public Pokemon pokemonRequestToPokemon(PutPokemonDtoRequest pokemonDtoRequest) {
+        return Pokemon.builder()
+                .name(pokemonDtoRequest.getName())
+                .level(pokemonDtoRequest.getLevel())
+                .trainer(Trainer.builder()
+                        .id(pokemonDtoRequest.getTrainer())
+                        .build())
+                .build();
+    }
 }
