@@ -1,0 +1,49 @@
+version: "1"
+
+services:
+  client:
+    build: ./Client
+    environment:
+      - APIURL=http://backend-gateway2:8080/api
+    ports:
+      - "8080:80"
+
+  backend-gateway:
+    build: ./PokemonWorld-Gateway
+    environment:
+      - world.pokemon.url=http://pokemon-service:8081
+      - world.trainer.url=http://trainer-service:8082
+
+  pokemon-service:
+    build: ./PokemonService
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pokemon-service-db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - pokemon-service-db
+
+  pokemon-service-db:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+
+  trainer-service:
+    build: ./TrainerService
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://trainer-service-db:5432/compose-postgres2
+      - SPRING_DATASOURCE_USERNAME=compose-postgres2
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres2
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - world.pokemon.url=http://pokemon-service:8081
+    depends_on:
+      - trainer-service-db
+
+  trainer-service-db:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=compose-postgres2
+      - POSTGRES_PASSWORD=compose-postgres2
+

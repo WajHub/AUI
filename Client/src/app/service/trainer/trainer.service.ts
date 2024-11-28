@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import { Trainer } from '../../model/trainer';
@@ -14,6 +14,7 @@ export class TrainerService {
   constructor(private http:HttpClient) { }
 
   findAllTrainers(): Observable<Trainer []>{
+    console.log("URL: ", this.url)
     return this.http.get<Trainer []>(this.url);
   }
   findTrainerById(id: string):Observable<TrainerDetails>{
@@ -40,6 +41,8 @@ export class TrainerService {
   }
 
   deleteTrainer(id: string):Observable<any> {
+    console.log("URL: ", this.url)
+    console.log("ID: ", id)
     return this.http.delete<any>(`${this.url}/${id}`);
   }
 }
