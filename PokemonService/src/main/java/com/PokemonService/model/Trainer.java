@@ -23,7 +23,7 @@ public class Trainer implements Serializable {
     @Column(name = "id")
     private UUID id = UUID.randomUUID();
 
-    @OneToMany(mappedBy = "trainer", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "trainer", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     private List<Pokemon> pokemons = new ArrayList<>();
 
     public static Trainer getById(List<Trainer> trainers, String uuid) {

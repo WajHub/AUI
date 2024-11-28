@@ -99,7 +99,9 @@ public class PokemonController {
     public void deletePokemon(@PathVariable UUID pokemonId){
         pokemonService.findById(pokemonId)
             .ifPresentOrElse(
-                pokemon -> pokemonService.deleteById(pokemonId),
+                (pokemon )-> {
+                    pokemonService.deleteById(pokemonId);
+                },
                 () -> {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                 }
